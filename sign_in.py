@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_google_auth import Authenticate
 
 # ... (set up your credentials and other variables)
-secret_credentials_path="client_secret.json"
+secret_credentials_path="./client_secret.json"
 cookie_name="GOOG_Auth"
 cookie_key="aZ456Jf77"
 cookie_expiry_days=7
