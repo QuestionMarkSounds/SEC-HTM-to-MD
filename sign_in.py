@@ -13,7 +13,7 @@ authenticator = Authenticate(
     cookie_name=cookie_name,
     cookie_key=cookie_key,
     cookie_expiry_days=cookie_expiry_days,
-    redirect_uri="http://mylocaldomain.com:8502"
+    redirect_uri="https://finelem.streamlit.app/"
 )
 
 authenticator.login()
