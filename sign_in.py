@@ -32,7 +32,7 @@ msal_result = None
     
 if "auth" not in st.session_state:
     msal_tenant = os.environ.get("MSAL_TENANT_ID")
-    msal_oauth2 = OAuth2Component(client_id="7bd5f9ba-68c4-4dcc-ac20-d762f49fb814", authorize_endpoint=f"https://login.microsoftonline.com/{msal_tenant}/oauth2/v2.0/authorize?", token_endpoint=f"https://login.microsoftonline.com/{msal_tenant}/oauth2/v2.0/token?")
+    msal_oauth2 = OAuth2Component(client_id=MSAL_CLIENT_ID, authorize_endpoint=f"https://login.microsoftonline.com/{msal_tenant}/oauth2/v2.0/authorize?", token_endpoint=f"https://login.microsoftonline.com/{msal_tenant}/oauth2/v2.0/token?")
     msal_result = oauth_button(msal_oauth2, platform="microsoft", use_container_width=True)
 
     if msal_result:
