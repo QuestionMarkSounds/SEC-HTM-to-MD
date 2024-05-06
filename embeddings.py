@@ -6,17 +6,45 @@ from htm_to_markdown import sec_to_md_file, sec_to_md_from_html
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from io import StringIO
 from sec_searcher import sec_search
+from streamlit_option_menu import option_menu
+from streamlit_extras.row import row
 
 load_dotenv()
 embeddings_model = OpenAIEmbeddings()
 
 import streamlit as st
 
+
 st.set_page_config(page_title='SEC Assistant', layout='centered')
+
+mystyle = '''
+    <style>
+        p {
+            text-align: justify;
+        }
+    </style>
+    '''
+
+st.markdown(mystyle, unsafe_allow_html=True)
 
 with st.sidebar:
     # st.sidebar.image(image_rhdhv, width=200)
     # PDF upload and processing
+    with st.container(border=True):
+        _,md_col,_ = st.columns([0.1,0.8,0.1])
+        with md_col:
+
+            st.markdown(
+                """ Welcome, {}!""".format(st.session_state["user_name"]))
+        _,button_col,_ = st.columns([0.3,0.4,0.3])
+
+        with button_col:
+            if st.button("Logout"):
+                del st.session_state["auth"]
+                del st.session_state["token"]
+                del st.session_state["user_name"]
+                st.switch_page("sign_in.py")
+
     filing = st.file_uploader("Upload a SEC filing", type=["html"])
     ticker_lookup = st.text_input("Search using ticker (example: AAPL)")
     st.sidebar.markdown("***AI may not always produce accurate results. Please confirm with an expert if you are un-sure about a response!")   
@@ -88,8 +116,6 @@ def groq_query(system_prompt, context, user_query):
 
     return response
 
-# groq_query(system_prompt=system_prompt, user_query="Who is the president of madagascar?")
-# if False:
 if query:=st.chat_input("Ask me anything about this PDF"):
     st.session_state.messages.append({"role": "user", "content": query})
 
@@ -106,12 +132,6 @@ if query:=st.chat_input("Ask me anything about this PDF"):
         for doc in docs:
             page_content = doc.page_content
             context += page_content
-        
-
-        # # llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0, openai_api_key=OPENAI_API_KEY)
-        # llm=ChatGroq(groq_api_key=groq_api_key, model_name="mixtral-8x7b-32768")
-        # chain = load_qa_chain(llm=llm, chain_type="stuff")
-        # response = chain.run(input_documents=docs, question=system_prompt+query)
 
         response = groq_query(system_prompt=system_prompt, context= context, user_query=query)
 
