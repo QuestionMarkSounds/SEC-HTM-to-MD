@@ -75,7 +75,7 @@ if filing is not None:
 
     md_text = sec_to_md_file(filing)
 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=7000, chunk_overlap=500, length_function=len)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=500, length_function=len)
     chunks = text_splitter.split_text(text=md_text)
     # print(md_text)
 

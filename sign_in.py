@@ -61,7 +61,7 @@ if "auth" not in st.session_state:
         st.switch_page("pages/embeddings.py")
 
     goog_oauth2 = OAuth2Component(GOOG_CLIENT_ID, GOOG_CLIENT_SECRET, GOOG_AUTHORIZE_ENDPOINT, GOOG_TOKEN_ENDPOINT, GOOG_TOKEN_ENDPOINT, GOOG_REVOKE_ENDPOINT)
-    goog_result = oauth_button(msal_oauth2, platform="google", use_container_width=True)
+    goog_result = oauth_button(goog_oauth2, platform="google", use_container_width=True)
     
     # goog_result = goog_oauth2.authorize_button(
     #     name="Continue with Google",
@@ -94,24 +94,8 @@ if "auth" not in st.session_state:
 
 else:
     
-    st.write("You are logged in!")
-    st.write(st.session_state["auth"])
-    st.write(st.session_state["token"])
+    # st.write("You are logged in!")
+    # st.write(st.session_state["auth"])
+    # st.write(st.session_state["token"])
     st.switch_page("pages/embeddings.py")
 
-# if not auth_data:
-#     st.write("Authenticate to access protected content")
-#     st.stop()
-
-# if auth_data:
-
-#     account = auth_data["account"]
-#     name = account["name"]
-#     username = account["username"]
-#     account_id = account["localAccountId"]
-#     # Display information
-#     print(f"Logged in as {name} {username}")
-#     st.write(f"Hello {name}!")
-#     st.write(f"Your username is: {username}")
-#     st.write(f"Your account id is: {account_id}")
-#     st.write("Your access token is:")

@@ -76,7 +76,7 @@ def sec_to_md_from_html(html):
 
     # with open(file, 'r') as f:
     html_text = html
-    html_text = clean_header_garbage(html_text.decode("utf-8", errors="ignore"))
+    html_text = clean_header_garbage(html_text)
 
     # rePrompt = '(?!<div id=\".+\">).(?=<\/div>\n)'
     # html_text = re.sub(rePrompt, "><h1>Header</h1>", html_text)
