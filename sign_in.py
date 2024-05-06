@@ -34,18 +34,6 @@ if "auth" not in st.session_state:
     msal_tenant = os.environ.get("MSAL_TENANT_ID")
     msal_oauth2 = OAuth2Component(client_id="7bd5f9ba-68c4-4dcc-ac20-d762f49fb814", authorize_endpoint=f"https://login.microsoftonline.com/{msal_tenant}/oauth2/v2.0/authorize?", token_endpoint=f"https://login.microsoftonline.com/{msal_tenant}/oauth2/v2.0/token?")
     msal_result = oauth_button(msal_oauth2, platform="microsoft", use_container_width=True)
-    
-    # msal_result = msal_oauth2.authorize_button(
-    #     name="2Continue with Microsoft",
-    #     icon="https://learn.microsoft.com/en-us/entra/identity-platform/media/howto-add-branding-in-apps/ms-symbollockup_mssymbol_19.png",
-    #     redirect_uri="http://localhost:8501",
-    #     scope="User.ReadBasic.All",
-    #     key="microsoft2",
-    #     extras_params={"prompt": "consent", "access_type": "offline"},
-    #     use_container_width=True,
-    #     pkce='S256',
-    # )
-
 
     if msal_result:
         id_token = msal_result["token"]["access_token"]
@@ -62,17 +50,6 @@ if "auth" not in st.session_state:
 
     goog_oauth2 = OAuth2Component(GOOG_CLIENT_ID, GOOG_CLIENT_SECRET, GOOG_AUTHORIZE_ENDPOINT, GOOG_TOKEN_ENDPOINT, GOOG_TOKEN_ENDPOINT, GOOG_REVOKE_ENDPOINT)
     goog_result = oauth_button(goog_oauth2, platform="google", use_container_width=True)
-    
-    # goog_result = goog_oauth2.authorize_button(
-    #     name="Continue with Google",
-    #     icon="https://www.google.com.tw/favicon.ico",
-    #     redirect_uri="http://localhost:8502",
-    #     scope="openid email profile",
-    #     key="google",
-    #     extras_params={"prompt": "consent", "access_type": "offline"},
-    #     use_container_width=True,
-    #     pkce='S256',
-    # )
 
     if goog_result:
         result = goog_result
@@ -94,8 +71,5 @@ if "auth" not in st.session_state:
 
 else:
     
-    # st.write("You are logged in!")
-    # st.write(st.session_state["auth"])
-    # st.write(st.session_state["token"])
     st.switch_page("pages/embeddings.py")
 

@@ -28,8 +28,7 @@ mystyle = '''
 st.markdown(mystyle, unsafe_allow_html=True)
 
 with st.sidebar:
-    # st.sidebar.image(image_rhdhv, width=200)
-    # PDF upload and processing
+
     with st.container(border=True):
         _,md_col,_ = st.columns([0.1,0.8,0.1])
         with md_col:
@@ -70,14 +69,11 @@ if ticker_lookup:
         st.success("Embeddings Computation Complete")
 
 if filing is not None:
-    # stringio = StringIO(filing.getvalue().decode("utf-8"))
-    # string_data = filing.read()
 
     md_text = sec_to_md_file(filing)
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=500, length_function=len)
     chunks = text_splitter.split_text(text=md_text)
-    # print(md_text)
 
     if st.session_state.vector_store is None:
         embeddings = OpenAIEmbeddings()
