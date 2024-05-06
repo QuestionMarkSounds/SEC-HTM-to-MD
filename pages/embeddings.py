@@ -12,10 +12,13 @@ from streamlit_extras.row import row
 load_dotenv()
 embeddings_model = OpenAIEmbeddings()
 
+
+
 import streamlit as st
 
+logo =st.session_state["logo"]
 
-st.set_page_config(page_title='SEC Assistant', layout='centered')
+st.set_page_config(page_title='FINTEL', layout='centered', page_icon=logo)
 
 mystyle = '''
     <style>
@@ -28,7 +31,9 @@ mystyle = '''
 st.markdown(mystyle, unsafe_allow_html=True)
 
 with st.sidebar:
-
+    left_co, cent_co,last_co = st.columns([0.4,0.2,0.4])
+    with cent_co:
+        st.image(logo)
     with st.container(border=True):
         _,md_col,_ = st.columns([0.1,0.8,0.1])
         with md_col:
