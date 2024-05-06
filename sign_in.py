@@ -45,7 +45,7 @@ st_base_url = urllib.parse.urlunparse([session.client.request.protocol, session.
 print(st_base_url)
 if "streamlit.app" in st_base_url:
     st_base_url.replace("http://", "https://")
-
+st_base_url = "https://fintelingence.streamlit.app"
 left_co, cent_co,last_co = st.columns([0.4,0.2,0.4])
 with cent_co:
     st.image(logo)
