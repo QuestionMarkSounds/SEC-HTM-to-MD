@@ -65,7 +65,7 @@ if ticker_lookup:
 
     md_text = sec_to_md_from_html(filing_tl.html())
 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=7000, chunk_overlap=500, length_function=len)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=500, length_function=len)
     chunks = text_splitter.split_text(text=md_text)
 
     if st.session_state.vector_store is None:
