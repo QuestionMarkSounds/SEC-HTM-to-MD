@@ -1,5 +1,5 @@
 from edgar.core import set_identity
-from edgar.entities import Company
+from edgar import Company
 
 
 
