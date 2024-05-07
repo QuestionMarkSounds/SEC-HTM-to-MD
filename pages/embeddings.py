@@ -4,8 +4,8 @@ from langchain_community.vectorstores import FAISS
 from prompts import system_prompt
 from htm_to_markdown import sec_to_md_file, sec_to_md_from_html
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from io import StringIO
-from sec_searcher import sec_search
+
+from modules.sec_searcher import sec_search
 from streamlit_option_menu import option_menu
 from streamlit_extras.row import row
 

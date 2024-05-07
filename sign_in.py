@@ -6,7 +6,7 @@ import base64
 import json
 from dotenv import load_dotenv
 from streamlit_msal import Msal
-from oauth_button import oauth_button
+from modules.oauth_button import oauth_button
 from PIL import Image
 
 load_dotenv()
