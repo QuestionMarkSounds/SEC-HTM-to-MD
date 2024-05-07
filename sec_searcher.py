@@ -1,4 +1,4 @@
-from edgar import *
+from edgar import set_identity, Company
 
 
 
